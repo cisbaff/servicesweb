@@ -1,0 +1,20 @@
+
+#divRepresentante{
+    border: 1px dotted grey;
+    padding: 5px;
+    border-radius: 4px;
+    display: none;
+    margin: 5px;
+
+}
+
+.card-response{
+    max-height: 60vh;
+    overflow: auto;
+}
+
+@media (max-width: 800px){
+
+ 
+
+}

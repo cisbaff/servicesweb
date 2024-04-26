@@ -1,0 +1,65 @@
+{% extends 'base_trocadeplantao.html' %}
+{% load static %}
+
+{% block header %}
+    <script src="{% static 'js/js-check.js' %}"></script>
+    <li class="nav-item active">
+    <a href="{% url '/' %}" class="nav-link">BOLETIM DE ATENDIMENTO SAMU<span class="sr-only">(current)</span></a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">CPF REQUERENTE</span>
+            </div>
+            <input id="inputCPF" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" {% if term %} value="{{ term }}" {% endif %}>
+            <div class="input-group-append">
+                <button onclick="searchCheck();" class="btn btn-outline-secondary" type="button">PESQUISAR</button>
+            </div>
+        </div>
+
+        {% if registers %}
+          
+          <div class="accordion" id="accordionExample">
+            
+            {% for register in registers %}
+                <div class="card">
+                <div class="card-header" id="heading{{register.pk}}">
+                   <div class="d-flex justify-content-between">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{register.pk}}" aria-expanded="true" aria-controls="collapse{{register.pk}}">
+                           Solicitado no dia {{ register.date }}
+                        </button>
+                        </h5>
+                        <div class="d-flex align-items-center">
+                        {% if register.status == 'analise' %}
+                            <span class="badge badge-pill badge-warning ">ANALISE</span>
+                        {% elif register.status == 'deferido' %}
+                            <span class="badge badge-pill badge-success justify-content-center">DEFERIDO</span>
+                        {% else %}
+                            <span class="badge badge-pill badge-danger">INDEFERIDO</span>
+                        {% endif %}
+                        </div>
+                   </div>
+                </div>
+            
+                <div id="collapse{{register.pk}}" class="collapse show" aria-labelledby="heading{{register.pk}}" data-parent="#accordionExample">
+                    <div class="card-body">
+                        {% if register.status == 'analise' %}
+                            Ainda estamos analisando, aguarde!!
+                        {% else %}
+                            {{ register.response }}
+                        {% endif %}
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+          </div>
+
+        {% endif %}
+
+    </div>
+{% endblock %}

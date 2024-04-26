@@ -1,0 +1,232 @@
+
+{% extends 'base_trocadeplantao.html' %}
+{% load static %}
+
+
+{% block header %}
+    <script src="{% static 'js/js-open.js' %}"></script>
+    <li class="nav-item active">
+    <a href="{% url '/' %}" class="nav-link">BOLETIM DE ATENDIMENTO SAMU<span class="sr-only">(current)</span></a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+      <div id="create">
+        <h3 style="text-align: center;">Formulário de solicitação de cópia de Boletim de atendimento</h3>            
+        <div class="bs-stepper">
+            <div id="stepper-header" class="bs-stepper-header" role="tablist" style=" overflow: auto;overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none;  &::-webkit-scrollbar {display: none;}" >
+              <br>
+                <!-- your steps here -->
+              <div class="step" data-target="#requester-part">
+                <button type="button" class="step-trigger" role="tab" aria-controls="requester-part" id="requester-part-trigger">
+                  <span class="bs-stepper-circle">1</span>
+                  <span class="bs-stepper-label">Dados do solicitante</span>
+                </button>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#occurrence-part">
+                <button type="button" class="step-trigger" role="tab" aria-controls="occurrence-part" id="occurrence-part-trigger">
+                  <span class="bs-stepper-circle">2</span>
+                  <span class="bs-stepper-label">Dados da ocorrência</span>
+                </button>
+              </div>
+              <div class="line"></div>
+ 
+              <div class="step" data-target="#documents-part">
+                <button type="button" class="step-trigger" role="tab" aria-controls="documents-part" id="documents-part-trigger">
+                  <span class="bs-stepper-circle">3</span>
+                  <span class="bs-stepper-label">Documentos</span>
+                </button>
+              </div>
+              
+            </div>
+
+            
+            <div class="bs-stepper-content">
+              <!-- your steps content here -->
+              <!-- Steper Dados do Solicitante-->
+              <div id="requester-part" class="content" role="tabpanel" aria-labelledby="requester-part-trigger">
+                
+                <div class="d-flex justify-content-center m-2">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioSolicitante" id="radioP" value="Paciente" required>
+                    <label class="form-check-label" for="inlineRadio1">Paciente</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioSolicitante" id="radioR" value="Representante" required>
+                    <label class="form-check-label" for="inlineRadio2">Representante</label>
+                  </div>
+                </div>
+
+
+                <div id="divRepresentante">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Pais/Demais familiares" required>
+                    <label class="form-check-label" for="inlineRadio1">Pais/Demais familiares</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Cônjuge ou Companheiro" required>
+                    <label class="form-check-label" for="inlineRadio2">Cônjuge ou Companheiro</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Procurador" required>
+                    <label class="form-check-label" for="inlineRadio3">Procurador</label>
+                  </div>
+                </div>
+               
+                <div class="form-group row ">
+                    <label class="col-sm-2 col-form-label"><b>Nome Completo *</b></label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" placeholder="Seu Nome Completo" data-name="Nome Completo" aria-label="Dados do solicitante" required>
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <label class="col-sm-2 col-form-label"><b>CPF *</b></label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" placeholder="Seu CPF" data-name="CPF" aria-label="Dados do solicitante" required>
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <label class="col-sm-2 col-form-label"><b>RG *</b></label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" placeholder="Seu RG" data-name="RG" aria-label="Dados do solicitante" required>
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <label class="col-sm-2 col-form-label"><b>Email *</b></label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" placeholder="Seu Email" data-name="Email" aria-label="Dados do solicitante" required>
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                  <label class="col-sm-2 col-form-label"><b>Finalidade *</b></label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioFinalidade" id="radioO" value="Óbito" required>
+                    <label class="form-check-label">Óbito</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioFinalidade" value="DPVAT" required>
+                    <label class="form-check-label">DPVAT</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioFinalidade" value="Benefício INSS" required>
+                    <label class="form-check-label">Benefício INSS</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioFinalidade" value="Seguro" required>
+                    <label class="form-check-label">Seguro</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioFinalidade" value="Ação Judicial" required>
+                    <label class="form-check-label">Ação Judicial</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioFinalidade" value="Outros" required>
+                    <label class="form-check-label">Outros</label>
+                  </div>
+              </div>
+              
+              <button type="button" onClick="CheckSteps(0);" class="btn btn-outline-primary">Próximo</button>
+
+              </div>
+              <div id="occurrence-part" class="content" role="tabpanel" aria-labelledby="occurrence-part-trigger">
+            <!-- Steper Dados da Ocorrnecia-->
+              <br>
+                <div class="form-group row ">
+                  <label class="col-sm-1 col-form-label mr-2"><b>Data *</b></label>
+                  <input required title="dataOcorrencia" type="date" data-name="Data da ocorrência" aria-label="Dados da ocorrencia" >
+                  <label class="col-sm-2 col-form-label"><b>Hora aproximada *</b></label>
+                  <input required="" title="horaOcorrencia" type="time" data-name="Hora da ocorrência" aria-label="Dados da ocorrencia">
+                </div>
+                
+                <div class="form-group row ">
+                    <label class="col-sm-3 col-form-label"><b>Nome do Paciente *</b></label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" placeholder="Nome do Paciente" data-name="Nome do Paciente" aria-label="Dados da ocorrencia" required>
+                    </div>
+                </div>
+                <div class="d-flex row p-3 pl-3 justify-content-between">
+                  <div class="d-flex" style="gap: 8px;">
+                    <label><b>Município *</b></label>
+                    <select name="municipio_ocorrencia" data-name="Municipio" aria-label="Dados da ocorrencia" required>
+                      <option value="BELFORD ROXO">BELFORD ROXO</option>
+                      <option value="DUQUE DE CAXIAS">DUQUE DE CAXIAS</option>
+                      <option value="ITAGUAI">ITAGUAI</option>
+                      <option value="JAPERI">JAPERI</option>
+                      <option value="MAGE">MAGE</option>
+                      <option value="MESQUITA">MESQUITA</option>
+                      <option value="NILOPOLIS">NILOPOLIS</option>
+                      <option value="NOVA IGUAÇU">NOVA IGUAÇU</option>
+                      <option value="PARACAMBI">PARACAMBI</option>
+                      <option value="QUEIMADOS">QUEIMADOS</option>
+                      <option value="SAO JOAO DE MERITI">SAO JOAO DE MERITI</option>
+                      <option value="SEROPEDICA">SEROPEDICA</option>
+                      </select>
+                  </div>
+                  <div class="d-flex" style="gap: 8px;">
+                    <label><b>Bairro *</b></label>
+                    <input type="text" placeholder="Nome do Bairro" data-name="Bairro" aria-label="Dados da ocorrencia" required>
+                  </div>
+                  <div class="d-flex" style="gap: 8px;">
+                    <label><b>Endereço *</b></label>
+                    <input type="text" placeholder="Endereço Completo" data-name="Endereço" aria-label="Dados da ocorrencia" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1"><b>Motivo da solicitação da ambulância *</b></label>
+                  <textarea class="form-control" data-name="Motivo da solicitação" aria-label="Dados da ocorrencia" rows="3" required></textarea>
+                </div>
+                <div class="form-group row ">
+                  <label class="col-sm-3 col-form-label"><b>Local do atendimento *</b></label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioAtendimento" value="Residência" required>
+                    <label class="form-check-label">Residência</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioAtendimento" value="Via pública" required>
+                    <label class="form-check-label">Via pública</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioAtendimento" value="Outros" required>
+                    <label class="form-check-label">Outros</label>
+                  </div>
+                </div>
+                <div class="form-group row ">
+                  <label class="col-sm-3 col-form-label"><b>Número da ocorrência: (Opcional)</b></label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Número da ocorrência" data-name="Número da ocorrencia" aria-label="Dados da ocorrencia">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label><b>Observações (opcional)</b></label>
+                  <textarea class="form-control" rows="3" data-name="Observações" aria-label="Dados da ocorrencia"></textarea>
+                </div>
+
+                <button type="button" onClick="stepper.to(0);ScrollDiv('start');" class="btn btn-outline-danger">Voltar</button>
+                <button type="button" onClick="CheckSteps(1);" class="btn btn-outline-primary">Próximo</button>
+              </div>
+              <div id="documents-part" class="content" role="tabpanel" aria-labelledby="documents-part-trigger">
+                <div id="documentosDiv" class="d-flex flex-column p-4 gap-4">
+
+                </div>
+                <button type="button" onClick="stepper.to(2);ScrollDiv('center');" class="btn btn-outline-danger">Voltar</button>
+                <button type="button" onClick="CheckSteps(2);" class="btn btn-outline-primary">Finalizar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="end" style="display:none;flex-direction: column;">
+          <label id="messageEnd">SUCESSO</label>
+          <div class="d-flex" style="gap: 10px;">
+            <a id="link"></a>
+            <a id="return"></a>
+          </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base_trocadeplantao.html' %}
+
+{% block header %}
+    <li class="nav-item active">
+    <a class="nav-link">BOLETIM DE ATENDIMENTO SAMU<span class="sr-only">(current)</span></a>
+    </li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <a type="button" href="{% url 'open_request' %}" class="btn btn-primary">Abrir Requerimento</a>
+        <a type="button" href="{% url 'check' %}" class="btn btn-primary">Acompanhar Requerimento</a>
+    </div>
+{% endblock %}
